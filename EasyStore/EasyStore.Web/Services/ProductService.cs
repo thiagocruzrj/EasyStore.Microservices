@@ -32,14 +32,19 @@ namespace EasyStore.Web.Services
             {
                 ApiType = SD.ApiType.DELETE,
                 Data = id,
-                Url = SD.ProductAPIBase + "/api/products",
+                Url = SD.ProductAPIBase + "/api/products" + id,
                 AccessToken = ""
             });
         }
 
-        public Task<T> GetAllProductsAsync<T>()
+        public async Task<T> GetAllProductsAsync<T>()
         {
-            throw new NotImplementedException();
+            return await SendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.ProductAPIBase + "/api/products",
+                AccessToken = ""
+            });
         }
 
         public Task<T> GetProductByIdAsync<T>(int Id)
