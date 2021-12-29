@@ -5,6 +5,7 @@ using EasyStore.ProductAPI.Models.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EasyStore.ProductAPI.Repository
@@ -20,9 +21,10 @@ namespace EasyStore.ProductAPI.Repository
             _mapper = mapper;
         }
 
-        public Task<ProductDto> GetProductById(int productId)
+        public async Task<ProductDto> GetProductById(int productId)
         {
-            throw new NotImplementedException();
+            Product product = await _db.Products.Where(x => x.ProductId == productId).FirstOrDefaultAsync();
+            return _mapper.Map<ProductDto>(product);
         }
 
         public async Task<IEnumerable<ProductDto>> GetProducts()
