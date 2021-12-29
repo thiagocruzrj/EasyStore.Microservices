@@ -8,7 +8,7 @@ namespace EasyStore.ProductAPI.Repository
     {
         Task<IEnumerable<ProductDto>> GetProducts();
         Task<ProductDto> GetProductById(int productId);
-        Task<ProductDto> UpdateProduct(ProductDto productDto);
+        Task<ProductDto> CreateUpdateProduct(ProductDto productDto);
         Task<bool> DeleteProduct(int productId);
     }
 }
