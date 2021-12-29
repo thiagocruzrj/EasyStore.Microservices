@@ -1,6 +1,7 @@
 ﻿using EasyStore.Web.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,18 +23,18 @@ namespace EasyStore.Web.Services.IServices
         {
             try
             {
-                var client = HttpClient.CreateClient("EasyStoreApi");
+                var client = HttpClient.CreateClient("MangoAPI");
                 HttpRequestMessage message = new HttpRequestMessage();
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
                 client.DefaultRequestHeaders.Clear();
-
-                if(apiRequest.Data != null)
+                if (apiRequest.Data != null)
                 {
-                    message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data), Encoding.UTF8, "application/json");
+                    message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data),
+                        Encoding.UTF8, "application/json");
                 }
 
-                HttpRequestMessage apiResponse = null;
+                HttpResponseMessage apiResponse = null;
                 switch (apiRequest.ApiType)
                 {
                     case SD.ApiType.POST:
@@ -49,18 +50,24 @@ namespace EasyStore.Web.Services.IServices
                         message.Method = HttpMethod.Get;
                         break;
                 }
-
                 apiResponse = await client.SendAsync(message);
 
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
                 var apiResponseDto = JsonConvert.DeserializeObject<T>(apiContent);
-
                 return apiResponseDto;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                var dto = new ResponseDto
+                {
+                    DisplayMessage = "Error",
+                    ErrorMessages = new List<string> { Convert.ToString(e.Message) },
+                    IsSuccess = false
+                };
 
-                throw;
+                var res = JsonConvert.SerializeObject(dto);
+                var apiResponseDto = JsonConvert.DeserializeObject<T>(res);
+                return apiResponseDto;
             }
         }
 
