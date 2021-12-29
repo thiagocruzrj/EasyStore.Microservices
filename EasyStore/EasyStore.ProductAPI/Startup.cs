@@ -1,4 +1,6 @@
+using AutoMapper;
 using EasyStore.ProductAPI.DbContexts;
+using EasyStore.ProductAPI.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,11 @@ namespace EasyStore.ProductAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
