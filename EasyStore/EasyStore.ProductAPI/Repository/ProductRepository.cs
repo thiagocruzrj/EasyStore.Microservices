@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using EasyStore.ProductAPI.DbContexts;
+using EasyStore.ProductAPI.Models;
 using EasyStore.ProductAPI.Models.Dto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,9 +25,10 @@ namespace EasyStore.ProductAPI.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ProductDto>> GetProducts()
+        public async Task<IEnumerable<ProductDto>> GetProducts()
         {
-            throw new NotImplementedException();
+            List<Product> productList = await _db.Products.ToListAsync();
+            return _mapper.Map<List<ProductDto>>(productList);
         }
 
         public Task<ProductDto> UpdateProduct(ProductDto productDto)
