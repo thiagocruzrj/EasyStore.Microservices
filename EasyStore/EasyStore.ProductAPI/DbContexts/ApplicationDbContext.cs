@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EasyStore.ProductAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EasyStore.ProductAPI.DbContexts
 {
@@ -8,5 +9,7 @@ namespace EasyStore.ProductAPI.DbContexts
         {
 
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 }
