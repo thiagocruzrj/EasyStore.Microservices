@@ -38,9 +38,26 @@ namespace EasyStore.ProductAPI.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteProduct(int productId)
+        public async Task<bool> DeleteProduct(int productId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Product product = await _db.Products.FirstOrDefaultAsync(d => d.ProductId == productId);
+
+                if(product == null)
+                {
+                    return false;
+                }
+
+                _db.Products.Remove(product);
+
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
