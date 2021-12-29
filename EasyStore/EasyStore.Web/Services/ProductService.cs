@@ -47,14 +47,25 @@ namespace EasyStore.Web.Services
             });
         }
 
-        public Task<T> GetProductByIdAsync<T>(int Id)
+        public async Task<T> GetProductByIdAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            return await SendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.ProductAPIBase + "/api/products" + id,
+                AccessToken = ""
+            });
         }
 
-        public Task<T> UpdateProductByIdAsync<T>(ProductDto productDto)
+        public async Task<T> UpdateProductByIdAsync<T>(ProductDto productDto)
         {
-            throw new NotImplementedException();
+            return await SendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.PUT,
+                Data = productDto,
+                Url = SD.ProductAPIBase + "/api/products" + id,
+                AccessToken = ""
+            });
         }
     }
 }
