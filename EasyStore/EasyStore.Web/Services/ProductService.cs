@@ -63,7 +63,7 @@ namespace EasyStore.Web.Services
             {
                 ApiType = SD.ApiType.PUT,
                 Data = productDto,
-                Url = SD.ProductAPIBase + "/api/products" + id,
+                Url = SD.ProductAPIBase + "/api/products",
                 AccessToken = ""
             });
         }
