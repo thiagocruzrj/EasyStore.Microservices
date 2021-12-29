@@ -23,11 +23,12 @@ namespace EasyStore.Web.Services.IServices
         {
             try
             {
-                var client = HttpClient.CreateClient("MangoAPI");
+                var client = HttpClient.CreateClient("EasyStoreApi");
                 HttpRequestMessage message = new HttpRequestMessage();
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
                 client.DefaultRequestHeaders.Clear();
+
                 if (apiRequest.Data != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data),
