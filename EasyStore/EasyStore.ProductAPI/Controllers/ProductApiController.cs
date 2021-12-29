@@ -87,5 +87,22 @@ namespace EasyStore.ProductAPI.Controllers
 
             return _response;
         }
+
+        [HttpDelete]
+        public async Task<object> Delete(int Id)
+        {
+            try
+            {
+                bool isSuccess = await _repository.DeleteProduct(Id);
+                _response.Result = isSuccess;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+
+            return _response;
+        }
     }
 }
