@@ -15,14 +15,26 @@ namespace EasyStore.Web.Services
             _clientFactory = httpClient;
         }
 
-        public Task<T> CreateProductByIdAsync<T>(ProductDto productDto)
+        public async Task<T> CreateProductByIdAsync<T>(ProductDto productDto)
         {
-            throw new NotImplementedException();
+            return await SendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = productDto,
+                Url = SD.ProductAPIBase + "/api/products",
+                AccessToken = ""
+            });
         }
 
-        public Task<T> DeleteProductByIdAsync<T>(int id)
+        public async Task<T> DeleteProductByIdAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            return await SendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.DELETE,
+                Data = id,
+                Url = SD.ProductAPIBase + "/api/products",
+                AccessToken = ""
+            });
         }
 
         public Task<T> GetAllProductsAsync<T>()
