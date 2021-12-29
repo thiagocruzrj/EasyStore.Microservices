@@ -18,7 +18,7 @@ namespace EasyStore.Web.Services.IServices
             HttpClient = httpClient;
         }
 
-        public Task<T> SendAsync<T>(ApiRequest apiRequest)
+        public async Task<T> SendAsync<T>(ApiRequest apiRequest)
         {
             try
             {
@@ -49,6 +49,13 @@ namespace EasyStore.Web.Services.IServices
                         message.Method = HttpMethod.Get;
                         break;
                 }
+
+                apiResponse = await client.SendAsync(message);
+
+                var apiContent = await apiResponse.Content.ReadAsStringAsync();
+                var apiResponseDto = JsonConvert.DeserializeObject<T>(apiContent);
+
+                return apiResponseDto;
             }
             catch (Exception)
             {
