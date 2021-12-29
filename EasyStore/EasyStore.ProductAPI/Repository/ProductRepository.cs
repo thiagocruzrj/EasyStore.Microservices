@@ -33,7 +33,7 @@ namespace EasyStore.ProductAPI.Repository
             return _mapper.Map<List<ProductDto>>(productList);
         }
 
-        public async Task<ProductDto> UpdateProduct(ProductDto productDto)
+        public async Task<ProductDto> CreateUpdateProduct(ProductDto productDto)
         {
             Product product = _mapper.Map<ProductDto, Product>(productDto);
             if(product.ProductId > 0)
