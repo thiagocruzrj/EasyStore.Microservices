@@ -30,6 +30,11 @@ namespace EasyStore.Web.Controllers
             return View(list);
         }
 
+        public async Task<IActionResult> ProductCreate()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ProductCreate(ProductDto model)
