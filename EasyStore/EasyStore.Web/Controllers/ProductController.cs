@@ -29,5 +29,10 @@ namespace EasyStore.Web.Controllers
 
             return View(list);
         }
+
+        public async Task<IActionResult> ProductCreate()
+        {
+            return View();
+        }
     }
 }
