@@ -30,9 +30,20 @@ namespace EasyStore.Web.Controllers
             return View(list);
         }
 
-        public async Task<IActionResult> ProductCreate()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductCreate(ProductDto model)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                var response = await _productService.CreateProductByIdAsync<ResponseDto>(model);
+                if (response != null && response.IsSuccess)
+                {
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+            }
+            
+            return View(model);
         }
     }
 }
