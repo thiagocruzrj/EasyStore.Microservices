@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{BC01E5F8-7AA0-4BA9-87DF-23EC2A7FBD13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyStore.Web", "EasyStore.Web\EasyStore.Web.csproj", "{5F3442E0-86EF-445A-8EEA-9D1DEDEA653D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyStore.Web", "EasyStore.Web\EasyStore.Web.csproj", "{5F3442E0-86EF-445A-8EEA-9D1DEDEA653D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9DDC8B2B-58F0-4C72-9F5B-F6C2934E3212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyStore.ProductAPI", "EasyStore.ProductAPI\EasyStore.ProductAPI.csproj", "{7653F064-3073-4435-AB88-141AF637BA07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyStore.ProductAPI", "EasyStore.ProductAPI\EasyStore.ProductAPI.csproj", "{7653F064-3073-4435-AB88-141AF637BA07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyStore.Identity", "EasyStore.Identity\EasyStore.Identity.csproj", "{F98BA599-124B-4A92-AF45-3C405CD612C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{7653F064-3073-4435-AB88-141AF637BA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7653F064-3073-4435-AB88-141AF637BA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7653F064-3073-4435-AB88-141AF637BA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F98BA599-124B-4A92-AF45-3C405CD612C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98BA599-124B-4A92-AF45-3C405CD612C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98BA599-124B-4A92-AF45-3C405CD612C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98BA599-124B-4A92-AF45-3C405CD612C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5F3442E0-86EF-445A-8EEA-9D1DEDEA653D} = {BC01E5F8-7AA0-4BA9-87DF-23EC2A7FBD13}
 		{7653F064-3073-4435-AB88-141AF637BA07} = {9DDC8B2B-58F0-4C72-9F5B-F6C2934E3212}
+		{F98BA599-124B-4A92-AF45-3C405CD612C0} = {9DDC8B2B-58F0-4C72-9F5B-F6C2934E3212}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {117D7BA0-1EDD-4373-AEA5-E034366D9601}
