@@ -7,8 +7,8 @@ namespace EasyStore.Web.Services.IServices
     {
         Task<T> GetAllProductsAsync<T>();
         Task<T> GetProductByIdAsync<T>(int id);
-        Task<T> CreateProductByIdAsync<T>(ProductDto productDto);
-        Task<T> UpdateProductByIdAsync<T>(ProductDto productDto);
-        Task<T> DeleteProductByIdAsync<T>(int id);
+        Task<T> CreateProductAsync<T>(ProductDto productDto);
+        Task<T> UpdateProductAsync<T>(ProductDto productDto);
+        Task<T> DeleteProductAsync<T>(int id);
     }
 }
