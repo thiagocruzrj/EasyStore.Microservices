@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EasyStore.Web.Controllers
@@ -30,10 +29,7 @@ namespace EasyStore.Web.Controllers
             return View(list);
         }
 
-        public async Task<IActionResult> ProductCreate()
-        {
-            return View();
-        }
+        public async Task<IActionResult> ProductCreate() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -41,7 +37,7 @@ namespace EasyStore.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                var response = await _productService.CreateProductByIdAsync<ResponseDto>(model);
+                var response = await _productService.CreateProductAsync<ResponseDto>(model);
                 if (response != null && response.IsSuccess)
                 {
                     return RedirectToAction(nameof(ProductIndex));
@@ -68,7 +64,7 @@ namespace EasyStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _productService.UpdateProductByIdAsync<ResponseDto>(model);
+                var response = await _productService.UpdateProductAsync<ResponseDto>(model);
                 if (response != null && response.IsSuccess)
                 {
                     return RedirectToAction(nameof(ProductIndex));
@@ -94,7 +90,7 @@ namespace EasyStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _productService.DeleteProductByIdAsync<ResponseDto>(model.ProductId);
+                var response = await _productService.DeleteProductAsync<ResponseDto>(model.ProductId);
                 if (response.IsSuccess)
                 {
                     return RedirectToAction(nameof(ProductIndex));
