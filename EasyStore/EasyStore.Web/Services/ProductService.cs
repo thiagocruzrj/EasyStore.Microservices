@@ -1,6 +1,5 @@
 ﻿using EasyStore.Web.Models;
 using EasyStore.Web.Services.IServices;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -10,14 +9,14 @@ namespace EasyStore.Web.Services
     {
         private readonly IHttpClientFactory _clientFactory;
 
-        public ProductService(IHttpClientFactory httpClient) : base(httpClient)
+        public ProductService(IHttpClientFactory clientFactory) : base(clientFactory)
         {
-            _clientFactory = httpClient;
+            _clientFactory = clientFactory;
         }
 
-        public async Task<T> CreateProductByIdAsync<T>(ProductDto productDto)
+        public async Task<T> CreateProductAsync<T>(ProductDto productDto)
         {
-            return await SendAsync<T>(new ApiRequest()
+            return await this.SendAsync<T>(new ApiRequest()
             {
                 ApiType = SD.ApiType.POST,
                 Data = productDto,
@@ -26,20 +25,19 @@ namespace EasyStore.Web.Services
             });
         }
 
-        public async Task<T> DeleteProductByIdAsync<T>(int id)
+        public async Task<T> DeleteProductAsync<T>(int id)
         {
-            return await SendAsync<T>(new ApiRequest()
+            return await this.SendAsync<T>(new ApiRequest()
             {
                 ApiType = SD.ApiType.DELETE,
-                Data = id,
-                Url = SD.ProductAPIBase + "/api/products" + id,
+                Url = SD.ProductAPIBase + "/api/products/" + id,
                 AccessToken = ""
             });
         }
 
         public async Task<T> GetAllProductsAsync<T>()
         {
-            return await SendAsync<T>(new ApiRequest()
+            return await this.SendAsync<T>(new ApiRequest()
             {
                 ApiType = SD.ApiType.GET,
                 Url = SD.ProductAPIBase + "/api/products",
@@ -49,17 +47,17 @@ namespace EasyStore.Web.Services
 
         public async Task<T> GetProductByIdAsync<T>(int id)
         {
-            return await SendAsync<T>(new ApiRequest()
+            return await this.SendAsync<T>(new ApiRequest()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.ProductAPIBase + "/api/products" + id,
+                Url = SD.ProductAPIBase + "/api/products/" + id,
                 AccessToken = ""
             });
         }
 
-        public async Task<T> UpdateProductByIdAsync<T>(ProductDto productDto)
+        public async Task<T> UpdateProductAsync<T>(ProductDto productDto)
         {
-            return await SendAsync<T>(new ApiRequest()
+            return await this.SendAsync<T>(new ApiRequest()
             {
                 ApiType = SD.ApiType.PUT,
                 Data = productDto,
